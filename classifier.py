@@ -186,7 +186,7 @@ class Classifier(nn.Module):
         return x.mean(dim=(2, 3))
 
     def get_loss(self, noisy_image, diffusion_step, label):
-        device = next(Classifier(10).parameters()).device
+        device = next(self.parameters()).device
         with torch.autocast(
             device_type=self.device.type, dtype=torch.float16,
         ) if device.type == "cuda" else contextlib.nullcontext():
